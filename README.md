@@ -1,4 +1,4 @@
-# Agent_RS485 library 0.9.1#
+# Agent_RS485 library 0.9.1 #
 
 Peter Dauscher
 License: LGPL 3.0
@@ -64,5 +64,5 @@ Explains the Error Code in words.
 
 ## History ##
 
-0.9.1: error code as status byte
-0.9.0: First version
++ 0.9.1: error code as status byte
++ 0.9.0: First version
