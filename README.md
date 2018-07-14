@@ -1,4 +1,4 @@
-# Agent_RS485 library #
+# Agent_RS485 library 0.9.1#
 
 Peter Dauscher
 License: LGPL 3.0
@@ -57,3 +57,7 @@ Receives a packet (the last two parameters represent the timeout interval and an
 ```
 Receives a packet (the last parameter represents the timeout interval )
 
+## History ##
+
+0.9.1: error code as status byte
+0.9.0: First version

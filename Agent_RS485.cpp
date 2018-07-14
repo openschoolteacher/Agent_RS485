@@ -62,12 +62,11 @@ int Agent_RS485::dataAvailable(int _millis){
 
 int Agent_RS485::packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int &_PL4, int _millis, int &_errcode){
 
-// Error Code
-// 0: Package correct
-// 1: Other address
-// 2: Timeout
-// 3: Wrong Startbyte
-// 4: Wrong checksum
+// Receives a packet (the last two parameters represent the timeout interval and an error code)
+  // bit 0: different address
+  // bit 1: timeout 
+  // bit 2: wrong start byte
+  // bit 3: wrong checksum
 
   
   int etime=0;
@@ -81,7 +80,7 @@ int Agent_RS485::packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int 
       etime+=10;
     }
     if (etime>_millis){
-      _errcode=2;
+      _errcode+=2;
       return 0;
     }
     rbyte[i]=RS485Serial->read();
@@ -99,10 +98,10 @@ int Agent_RS485::packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int 
     }   else {
    
       if (rbyte[0]!=64){
-        _errcode=3;
+        _errcode+=4;
       }
       if (chsum!=rbyte[7]){
-        _errcode=4;
+        _errcode+=1;
       }
       if (rbyte[1]!=Address){
          _errcode=1;
@@ -117,4 +116,20 @@ int Agent_RS485::packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int 
   return packetReceived(_PL0,_PL1,_PL2,_PL3,_PL4,_millis,errcode);
 }
 
-
+void Agent_RS485::explainErrCode(int _errcode){
+  if (_errcode & 1) {
+	  Serial.println("Address differs");  
+  }	  
+  if (_errcode & 2) {
+	  Serial.println("Timeout");  
+  }	  
+  if (_errcode & 4) {
+	  Serial.println("Wrong start byte");  
+  }	  
+  if (_errcode & 8) {
+	  Serial.println("Wrong checksum");  
+  }	  
+  if (_errcode==0) {
+	  Serial.println("No error detected");  
+  }
+}

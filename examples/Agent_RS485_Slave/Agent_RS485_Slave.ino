@@ -15,8 +15,8 @@ int xPL4=0;
 #define SSerialTxControl 3   //RS485 Direction control
 #define RS485Transmit HIGH
 
-#define RS485Baudrate 300
-#define RS485Delay 20
+#define RS485Baudrate 4800
+#define RS485Delay 5
 
 
 #define AgentNr 42
