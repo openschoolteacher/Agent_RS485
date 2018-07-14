@@ -46,16 +46,21 @@ Checks wheter data is available on the bus.
 int packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int &_PL4, int _millis, int &_errcode);
 ```
 Receives a packet (the last two parameters represent the timeout interval and an error code)
-0: Package correct
-1: Other address
-2: Timeout
-3: Wrong Startbyte
-4: Wrong checksum
++ bit 0: different address
++ bit 1: timeout 
++ bit 2: wrong start byte
++ bit 3: wrong checksum
 
 ```
   int packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int &_PL4, int _millis);
 ```
 Receives a packet (the last parameter represents the timeout interval )
+
+```
+void explainErrCode(int _errcode);
+```
+Explains the Error Code in words.
+
 
 ## History ##
 
