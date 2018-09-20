@@ -1,6 +1,8 @@
 // Arduino library for master-slave communication in RS485 based buses
 // Peter Dauscher
 // License: LGPL 3.0
+// Version 0.9.2
+
 
 // !! WARNING: THERE IS ABSOLUTELY NO WARRANTY FOR THIS LIBRARY!!
 // It is in an experimental state and tested only in a very limited scope.

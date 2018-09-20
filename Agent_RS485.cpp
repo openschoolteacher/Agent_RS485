@@ -1,5 +1,10 @@
 #include "Agent_RS485.h"
 #include <SoftwareSerial.h> 
+
+// =================
+// Version 0.9.2
+// =================
+
  
  Agent_RS485::Agent_RS485 (byte _Address, byte _SSerialRX, byte _SSerialTX, byte _SSerialTxControl, byte _RS485Transmit){
     Address=_Address;
@@ -101,10 +106,10 @@ int Agent_RS485::packetReceived(int &_PL0, int &_PL1, int &_PL2, int &_PL3, int 
         _errcode+=4;
       }
       if (chsum!=rbyte[7]){
-        _errcode+=1;
+        _errcode+=8;
       }
       if (rbyte[1]!=Address){
-         _errcode=1;
+         _errcode+=1;
       }
 
       return 0;
